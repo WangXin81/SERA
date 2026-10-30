@@ -14,3 +14,8 @@ protocols, resource preparation, and verification commands.
 For the main workflow, start with the [repository README](../README.md).
 Experiment commands are indexed in the [script guide](../scripts/README.md),
 and paper tables are indexed in the [result guide](../results/README.md).
+
+Command examples use the repository root as their working directory. Dataset
+paths identify the parent of the eleven dataset directories; model resource
+paths identify the parent of `clip/`. The data and model guides define the
+corresponding directory layouts.
