@@ -3,6 +3,13 @@
 This directory contains the loaders for the eleven classification datasets,
 shared dataset utilities, and frozen split metadata under `jsons/`.
 
+| Contents | Location |
+| --- | --- |
+| Dataset-specific loaders | `caltech101.py`, `dtd.py`, `eurosat.py`, `fgvc.py`, `food101.py`, `imagenet.py`, `oxford_flowers.py`, `oxford_pets.py`, `stanford_cars.py`, `sun397.py`, `ucf101.py` |
+| Shared loading and few-shot sampling utilities | `utils.py` |
+| Frozen partition files and metadata | `jsons/` |
+| Reference image inventory | `manifests/` |
+
 The loaders sample the K-shot support set from training images and expose
 separate validation and query sets. When a split JSON is absent from a dataset
 directory, the shared utilities fall back to the bundled file with the same
