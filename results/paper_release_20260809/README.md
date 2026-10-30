@@ -17,4 +17,7 @@ The released tables are reconstructed from the original experiment JSON files wi
 
 Protocol note: UEC deltas use each paired JSON's same-run `full_final_acc`. The separately archived main-grid `SERA_val` is not substituted for that paired baseline.
 
-The experiment result CSVs retain at least four decimal places (usually substantially more). Manuscript display values are rounded to two decimals; displayed deltas are computed after both operands are rounded to two decimals.
+The experiment result CSVs retain raw numerical precision. Main-table accuracy
+values are displayed to two decimals, and their displayed differences use the
+displayed operands. Paired UEC differences use the same-run raw baseline and
+ablation values before aggregation and rounding, as specified in the manuscript.

@@ -71,7 +71,7 @@ Run the full 165-cell grid:
 
   bash scripts/reproduce_grid.sh full_val
 
-Run the paired UEC evidence-family ablation:
+Run the paired UEC evidence-group ablation:
 
   bash scripts/reproduce_uec_internal_grid.sh
 

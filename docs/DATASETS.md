@@ -87,6 +87,8 @@ Verify the prepared image files against the reference checksums:
 python scripts/verify_reference_data.py --root /path/to/dataset-root
 ```
 
+The ImageNet check also rejects additional image files and class directories,
+because they change the support sampling pool or validation/query partition.
 `--dataset imagenet` restricts the check to one dataset. `--sizes-only` performs
 a faster path-and-size check. The default check verifies image files; adding
 `--include-metadata` also checks the original annotation, preparation-record,

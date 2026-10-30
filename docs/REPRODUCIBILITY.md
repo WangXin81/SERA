@@ -46,7 +46,7 @@ bash scripts/reproduce_grid.sh full_val
 ```
 
 The paired UEC internal ablation uses the same trained model and collected
-logits for both controlled variants. It removes only one UEC evidence family
+logits for both controlled variants. It removes one of the two UEC evidence groups
 from the routing pool at a time while keeping REA, MEA, VPER, seed, epochs,
 batch size, validation protocol, and balanced profile unchanged:
 
@@ -54,9 +54,9 @@ batch size, validation protocol, and balanced profile unchanged:
 bash scripts/reproduce_uec_internal_grid.sh
 ```
 
-`base_alignment_only` corresponds to SERA w/o VFR; it retains only
+`base_alignment_only` corresponds to SERA-V w/o VFR; it retains only
 `clip/mlp/ada/total` UEC evidence. `vocabulary_free_relation_only` corresponds
-to SERA w/o BA; it retains only `sim_*` UEC evidence. The command writes one
+to SERA-V w/o BA; it retains only `sim_*` UEC evidence. The command writes one
 paired JSON per dataset/backbone/shot cell and summarizes all 330 variant
 results after completing the 165-cell grid.
 
@@ -66,7 +66,7 @@ are written under `outputs/`. The consolidated reference table is
 
 ## Reference Archive Integrity
 
-The package contains 990 archived JSON files representing 1,155 reported
+The canonical `results/reference/` tree contains 990 JSON files representing 1,155 reported
 results: 165 full SERA results plus 990 ablation results across six variants.
 The archive includes 165 no-REA, 165 no-MEA, 330 routing-protocol, and 330
 UEC internal-evidence results; the UEC results are stored in 165 paired JSON
@@ -79,12 +79,13 @@ Every archived record declares `query_leakage=false` and
 `test_label_used=false`. `scripts/verify_package.py` checks counts, complete
 grid axes, protocol membership, leakage declarations, and result structure.
 
-## Representative Rerun Validation
+## Archived Representative Rerun Validation
 
-Twelve cells spanning all 11 datasets, all three backbones, all five shot
-values, and four protocols were rerun through the publication entry point in
-the verified environment. The table compares each fresh run with its archived
-paper result.
+During release validation, twelve cells spanning all 11 datasets, all three
+backbones, all five shot values, and four protocols were rerun through the
+publication entry point in the verified environment. The table compares those
+reruns with the archived paper results. These are preserved validation records;
+the source-check commands do not execute new training runs.
 
 | Dataset | Backbone | Shots | Protocol | Fresh final accuracy | Archive final accuracy | Absolute difference |
 |---|---|---:|---|---:|---:|---:|
@@ -146,19 +147,17 @@ python scripts/rebuild_paper_tables.py
 ```
 
 After preparing the resources described in [Dataset Preparation](DATASETS.md)
-and [Model Resources](RESOURCES.md), run the checks below.
-
-
-Run the following after every copy, archive extraction, or server deployment:
+and [Model Resources](RESOURCES.md), validate the prepared source checkout with:
 
 ```bash
 python scripts/verify_package.py
-python scripts/check_data.py
+python scripts/verify_reference_data.py
 python scripts/check_environment.py
 ```
 
-The commands validate package structure and hashes, archived-result coverage
-and leakage flags, all eleven dataset splits and image paths, and the numerical
-environment.
+The commands validate package structure, archived-result coverage and leakage
+flags, the prepared image files, and the numerical environment. The separate
+`python scripts/check_data.py` command checks the original complete server
+bundle's exact inventory, cached metadata, and loader splits.
 
 [Repository README](../README.md) · [Documentation](README.md)

@@ -15,7 +15,7 @@ and the paper archive. Fresh experiments write to `outputs/`.
 | **Total** | **990 JSON** | **1,155 results** |
 
 Each UEC paired JSON contains its same-run full baseline and both controlled
-evidence-family variants. UEC deltas use this paired baseline; they do not
+evidence-group variants. UEC deltas use this paired baseline; they do not
 substitute the separately archived main-grid full-SERA result.
 
 ## Tables and Paper Archive

@@ -20,10 +20,12 @@ image directories, source pages, and the ImageNet protocol. After preparing
 the image tree, run from the repository root:
 
 ```bash
-python scripts/check_data.py
+python scripts/verify_reference_data.py
 ```
 
-This checks the frozen full-bundle inventory and verifies that every referenced
-image exists. Dataset images are prepared separately from the source checkout.
+This validates the prepared image files against the server reference inventory.
+For the original complete server bundle, `python scripts/check_data.py` also
+checks its exact file inventory, cached metadata, and loader splits.
+Dataset images are prepared separately from the source checkout.
 
 [Repository README](../README.md)

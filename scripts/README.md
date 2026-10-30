@@ -10,10 +10,10 @@ Run these commands from the repository root in the documented environment.
 | `verify_reference_data.py` | Verify image paths, sizes, and the server reference inventory |
 | `run_experiment.sh` | Train and evaluate one dataset-backbone-shot-protocol cell |
 | `reproduce_grid.sh` | Run all 165 cells for one formal protocol |
-| `reproduce_uec_internal_grid.sh` | Run the paired UEC evidence-family ablation grid |
+| `reproduce_uec_internal_grid.sh` | Run the paired UEC evidence-group ablation grid |
 | `summarize_uec_internal.py` | Consolidate fresh paired UEC JSON outputs |
 | `rebuild_paper_tables.py` | Reconstruct and compare the frozen paper tables |
-| `verify_package.py` | Check structure, hashes, result coverage, and leakage declarations |
+| `verify_package.py` | Check package structure, result coverage, protocol metadata, and leakage declarations |
 | `check_data.py` | Check the full-bundle dataset inventory and image paths |
 | `check_environment.py` | Check the reference numerical software versions |
 

@@ -2,7 +2,7 @@
 
 This document maps the paper terminology to the verified implementation in
 `sera/runner.py`. It describes the formal `balanced` evidence profile used by
-the reported experiments. Optional exploratory evidence families are disabled
+the reported experiments. Optional exploratory evidence branches are disabled
 by this profile and do not enter the reported SERA results.
 
 ## End-to-end execution order
@@ -35,7 +35,8 @@ training, residual adaptation, route selection, or fusion-weight selection.
 ## UEC: Unified Evidence Construction
 
 UEC operates in a common C-class logit space. Under
-`--evidence_pool_profile balanced`, it retains exactly two evidence families:
+`--evidence_pool_profile balanced`, it retains two evidence groups, each
+containing four evidence branches:
 
 ### Base alignment evidence
 
@@ -114,9 +115,9 @@ is 0.05.
 - `SERA_no_MEA`: disables FiveCrop evaluation while retaining UEC, REA, and
   VPER.
 - `SERA_support_only` and `SERA_support_fixed`: change only the VPER protocol.
-- `SERA w/o VFR` (`base_alignment_only`): removes vocabulary-free relation
+- `SERA-V w/o VFR` (`base_alignment_only`): removes vocabulary-free relation
   evidence from the UEC pool while retaining base alignment evidence.
-- `SERA w/o BA` (`vocabulary_free_relation_only`): removes base alignment
+- `SERA-V w/o BA` (`vocabulary_free_relation_only`): removes base alignment
   evidence from the UEC pool while retaining vocabulary-free relation evidence.
 
 The paired UEC ablations retain REA, MEA, and VPER and reuse the same trained

@@ -66,17 +66,17 @@ records and are displayed to two decimal places.
 
 The complete grid contains 11 datasets, three backbones, and five shot settings
 (165 cells). The mean across all 165 cells and the corresponding controlled
-variants are:
+variants are shown below, rounded to two decimal places:
 
 | Configuration | Mean top-1 accuracy (%) |
 | --- | ---: |
-| SERA-V (`SERA_val` in archived records) | 80.310827 |
-| SERA-V w/o VFR | 80.052172 |
-| SERA-V w/o BA | 79.071110 |
-| SERA-V w/o REA | 79.216176 |
-| SERA-SO (support-only routing) | 77.254315 |
-| SERA-SF (fixed routing) | 79.483565 |
-| SERA-V w/o MEA | 79.770015 |
+| SERA-V (`SERA_val` in archived records) | 80.31 |
+| SERA-V w/o VFR | 80.05 |
+| SERA-V w/o BA | 79.07 |
+| SERA-V w/o REA | 79.22 |
+| SERA-SO (support-only routing) | 77.25 |
+| SERA-SF (fixed routing) | 79.48 |
+| SERA-V w/o MEA | 79.77 |
 
 See [Reference Results](results/README.md) for individual cells, ablations,
 external-method comparison tables, and archive provenance.
@@ -96,8 +96,8 @@ python scripts/rebuild_paper_tables.py
 
 Prepare the eleven datasets following the [data guide](docs/DATASETS.md).
 The resource command downloads the three reference CLIP checkpoints and restores
-the included text-feature caches. Every model asset is verified against the
-reference model assets:
+the included text-feature caches. The preparation command validates all
+downloaded and restored files:
 
 ```bash
 python scripts/prepare_model_resources.py
@@ -127,10 +127,10 @@ environment's Python executable when that environment is not already active.
 | SERA without MEA | `bash scripts/reproduce_grid.sh no_mea` |
 | Support-only routing | `bash scripts/reproduce_grid.sh support_only` |
 | Fixed routing | `bash scripts/reproduce_grid.sh support_fixed` |
-| Paired UEC evidence-family ablations | `bash scripts/reproduce_uec_internal_grid.sh` |
+| Paired UEC evidence-group ablations | `bash scripts/reproduce_uec_internal_grid.sh` |
 
 Each command evaluates the 165-cell grid with seed 2024. The paired UEC
-experiment evaluates removal of each evidence family using the same trained
+experiment evaluates removal of each evidence group using the same trained
 model and collected logits for a cell. It produces 165 paired JSON files
 containing 330 controlled-variant results.
 
