@@ -25,6 +25,9 @@ bash scripts/run_experiment.sh caltech101 vit_b16 1 full_val 2024
 
 The positional arguments are `DATASET BACKBONE SHOTS [PROTOCOL] [SEED]`.
 Supported protocols are listed in the [configuration guide](../configs/README.md).
+The launcher supplies the explicit switches for REA, MEA, and VPER required by
+the selected protocol. Calling `train.py` with parser defaults alone does not
+enable the complete method.
 
 `PYTHON_BIN`, `DATA_ROOT`, `MODEL_ROOT`, and `OUTPUT_ROOT` select the Python
 executable and local resource/output roots. `BATCH_SIZE` and `NUM_WORKERS`
