@@ -11,8 +11,17 @@ Experiment configuration is specified by the command-line options in
 | SERA-V w/o REA | `no_rea` | Validation routing with the independent REA branch disabled |
 | SERA-V w/o MEA | `no_mea` | Validation routing with single-view base evaluation |
 
-The formal grid uses seed 2024, 50 base-training epochs, batch size 32, three
-CLIP backbones, five shot settings, and eleven datasets.
+## Formal Settings
+
+| Setting | Value |
+| --- | --- |
+| Seed | 2024 |
+| Base-alignment training | 50 epochs |
+| Batch size | 32 |
+| Backbones | `vit_b32`, `vit_b16`, `vit_l14` |
+| Shots per class | 1, 2, 4, 8, 16 |
+| Dataset suite | common11 |
+| Evidence-pool profile | `balanced` |
 
 The paired UEC ablations are exported with `--save_uec_ablation_json` or
 `scripts/reproduce_uec_internal_grid.sh`. The `base_alignment_only` variant
