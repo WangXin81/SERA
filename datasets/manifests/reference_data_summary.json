@@ -1,0 +1,46 @@
+{
+  "Caltech101": {
+    "files": 9148,
+    "bytes": 139847023
+  },
+  "Flower102": {
+    "files": 8194,
+    "bytes": 347978184
+  },
+  "Food101": {
+    "files": 101011,
+    "bytes": 5131457658
+  },
+  "OxfordPets": {
+    "files": 18476,
+    "bytes": 820145087
+  },
+  "StanfordCars": {
+    "files": 16186,
+    "bytes": 2201742041
+  },
+  "UCF101": {
+    "files": 13323,
+    "bytes": 142676787
+  },
+  "dtd": {
+    "files": 5677,
+    "bytes": 634807823
+  },
+  "eurosat": {
+    "files": 27001,
+    "bytes": 94850852
+  },
+  "fgvc_aircraft": {
+    "files": 10021,
+    "bytes": 2763197764
+  },
+  "imagenet": {
+    "files": 66002,
+    "bytes": 8545877820
+  },
+  "sun397": {
+    "files": 39701,
+    "bytes": 14564879711
+  }
+}

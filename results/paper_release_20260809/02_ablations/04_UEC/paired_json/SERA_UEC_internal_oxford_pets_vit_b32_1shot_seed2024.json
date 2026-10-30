@@ -1,0 +1,91 @@
+{
+  "version": "SERA_UEC_INTERNAL_ABLATION_20260806",
+  "dataset": "oxford_pets",
+  "backbone": "vit_b32",
+  "shots": 1,
+  "seed": 2024,
+  "selection_mode": "official_val",
+  "same_run_shared_training_and_logits": true,
+  "shared_feature_training_unchanged": true,
+  "full_final_acc": 0.8991550803184509,
+  "query_leakage": false,
+  "test_label_used": false,
+  "variants": {
+    "base_alignment_only": {
+      "final_acc": 0.8991550803184509,
+      "selection_key": "prob:residual_evidence=0.45,clip=0.55",
+      "paper_selection_key": "prob:Residual Adaptation Evidence=0.45,Semantic Prior Evidence=0.55",
+      "guard_decision": "residual_evidence_selected",
+      "base_branch_count": 4,
+      "candidate_branch_count": 5,
+      "removed": {
+        "composite_evidence": false,
+        "subspace_evidence": false,
+        "auxiliary_support_evidence": false
+      },
+      "pool_profile": "balanced",
+      "branch_names": [
+        "ada",
+        "clip",
+        "mlp",
+        "residual_evidence",
+        "total"
+      ],
+      "uec_evidence_family_mode": "base_alignment_only",
+      "shared_feature_training_unchanged": true,
+      "removed_from_routing_pool": "vocabulary_free_relation_evidence",
+      "delta_vs_full_pp": 0.0
+    },
+    "vocabulary_free_relation_only": {
+      "final_acc": 0.8950667977333069,
+      "selection_key": "prob:residual_evidence=0.95,sim_raw_l0.3=0.00,sim_raw_l0.1=0.05",
+      "paper_selection_key": "prob:Residual Adaptation Evidence=0.95,Direct Relation Evidence=0.00,Direct Relation Evidence=0.05",
+      "guard_decision": "residual_evidence_selected",
+      "base_branch_count": 30,
+      "candidate_branch_count": 31,
+      "removed": {
+        "composite_evidence": false,
+        "subspace_evidence": false,
+        "auxiliary_support_evidence": false
+      },
+      "pool_profile": "balanced",
+      "branch_names": [
+        "residual_evidence",
+        "sim_raw_l0.03",
+        "sim_raw_l0.1",
+        "sim_raw_l0.3",
+        "sim_select_l0.03_w0.1_k128",
+        "sim_select_l0.03_w0.1_k256",
+        "sim_select_l0.03_w0.1_k512",
+        "sim_select_l0.03_w0.3_k128",
+        "sim_select_l0.03_w0.3_k256",
+        "sim_select_l0.03_w0.3_k512",
+        "sim_select_l0.1_w0.1_k128",
+        "sim_select_l0.1_w0.1_k256",
+        "sim_select_l0.1_w0.1_k512",
+        "sim_select_l0.1_w0.3_k128",
+        "sim_select_l0.1_w0.3_k256",
+        "sim_select_l0.1_w0.3_k512",
+        "sim_select_l0.3_w0.1_k128",
+        "sim_select_l0.3_w0.1_k256",
+        "sim_select_l0.3_w0.1_k512",
+        "sim_select_l0.3_w0.3_k128",
+        "sim_select_l0.3_w0.3_k256",
+        "sim_select_l0.3_w0.3_k512",
+        "sim_teacher_l0.03_w0.1",
+        "sim_teacher_l0.03_w0.3",
+        "sim_teacher_l0.1_w0.1",
+        "sim_teacher_l0.1_w0.3",
+        "sim_teacher_l0.3_w0.1",
+        "sim_teacher_l0.3_w0.3",
+        "sim_z_l0.03",
+        "sim_z_l0.1",
+        "sim_z_l0.3"
+      ],
+      "uec_evidence_family_mode": "vocabulary_free_relation_only",
+      "shared_feature_training_unchanged": true,
+      "removed_from_routing_pool": "base_alignment_evidence",
+      "delta_vs_full_pp": -0.4088282585144043
+    }
+  }
+}

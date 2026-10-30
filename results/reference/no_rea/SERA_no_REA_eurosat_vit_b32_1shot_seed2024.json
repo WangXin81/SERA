@@ -1,0 +1,419 @@
+{
+  "version": "SERA",
+  "dataset": "eurosat",
+  "backbone": "vit_b32",
+  "shots": 1,
+  "seed": 2024,
+  "validation_mode": "official_val",
+  "uses_extra_training_data": false,
+  "uses_query_images_for_training": false,
+  "uses_query_labels_for_adaptation": false,
+  "uses_query_labels_for_selection": false,
+  "selection_mode": "official_val",
+  "sera_protocol_name": "SERA_val",
+  "official_val_used_for_selection": true,
+  "support_only_selection_used": false,
+  "fixed_selection_used": false,
+  "query_leakage": false,
+  "test_label_used": false,
+  "uses_val_labels_for_selection": true,
+  "vocab_free_enabled": true,
+  "peft_warmup_enabled": true,
+  "feature_scale_evidence_enabled": false,
+  "evidence_pool_profile": "balanced",
+  "balanced_evidence_pool_default": true,
+  "svd_adapter_enabled": false,
+  "stack_adapter_enabled": false,
+  "auxiliary_support_evidence_enabled": false,
+  "evidence_pool_configuration": {
+    "unified_evidence_construction": true,
+    "base_alignment_evidence_enabled": true,
+    "vocabulary_free_relation_evidence_enabled": true,
+    "residual_evidence_adaptation_enabled": false
+  },
+  "residual_reference_warmup_enabled": false,
+  "residual_evidence_enabled": false,
+  "validation_protected_routing_enabled": true,
+  "evidence_routing_guard_margin": 0.0,
+  "multi_view_evidence_aggregation_enabled": true,
+  "residual_reference_warmup_iters_per_shot": 250,
+  "residual_evidence_iters_per_shot": 500,
+  "residual_evidence_batch_size": 32,
+  "sera_modules": {
+    "unified_evidence_construction": true,
+    "residual_evidence_adaptation": false,
+    "validation_protected_evidence_routing": true,
+    "multi_crop_evidence_aggregation": true
+  },
+  "sera_module_roles": {
+    "unified_evidence_construction": "core",
+    "residual_evidence_adaptation": "core",
+    "validation_protected_evidence_routing": "core",
+    "multi_crop_evidence_aggregation": "core"
+  },
+  "sera_aliases": {
+    "evidence_pool_profile": "balanced",
+    "evidence_routing_mode": "official_val",
+    "enable_residual_evidence_adaptation": false,
+    "enable_validation_protected_evidence_routing": true,
+    "enable_multi_crop_evidence_aggregation": true
+  },
+  "paper_modules": {
+    "unified_evidence_construction": "Unified Evidence Construction",
+    "residual_evidence_adaptation": "Residual Evidence Adaptation",
+    "validation_protected_evidence_routing": "Validation-protected Evidence Routing",
+    "multi_crop_evidence_aggregation": "Multi-crop Evidence Aggregation"
+  },
+  "paper_evidence_registry": {
+    "ada": {
+      "internal_name": "ada",
+      "paper_name": "Residual Logit Evidence",
+      "category": "Unified Evidence Construction / Base Alignment Evidence"
+    },
+    "clip": {
+      "internal_name": "clip",
+      "paper_name": "Semantic Prior Evidence",
+      "category": "Unified Evidence Construction / Base Alignment Evidence"
+    },
+    "mlp": {
+      "internal_name": "mlp",
+      "paper_name": "Visual Adaptation Evidence",
+      "category": "Unified Evidence Construction / Base Alignment Evidence"
+    },
+    "sim_raw_l0.03": {
+      "internal_name": "sim_raw_l0.03",
+      "paper_name": "Direct Relation Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_raw_l0.1": {
+      "internal_name": "sim_raw_l0.1",
+      "paper_name": "Direct Relation Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_raw_l0.3": {
+      "internal_name": "sim_raw_l0.3",
+      "paper_name": "Direct Relation Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.1_k128": {
+      "internal_name": "sim_select_l0.03_w0.1_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.1_k256": {
+      "internal_name": "sim_select_l0.03_w0.1_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.1_k512": {
+      "internal_name": "sim_select_l0.03_w0.1_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.3_k128": {
+      "internal_name": "sim_select_l0.03_w0.3_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.3_k256": {
+      "internal_name": "sim_select_l0.03_w0.3_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.03_w0.3_k512": {
+      "internal_name": "sim_select_l0.03_w0.3_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.1_k128": {
+      "internal_name": "sim_select_l0.1_w0.1_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.1_k256": {
+      "internal_name": "sim_select_l0.1_w0.1_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.1_k512": {
+      "internal_name": "sim_select_l0.1_w0.1_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.3_k128": {
+      "internal_name": "sim_select_l0.1_w0.3_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.3_k256": {
+      "internal_name": "sim_select_l0.1_w0.3_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.1_w0.3_k512": {
+      "internal_name": "sim_select_l0.1_w0.3_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.1_k128": {
+      "internal_name": "sim_select_l0.3_w0.1_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.1_k256": {
+      "internal_name": "sim_select_l0.3_w0.1_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.1_k512": {
+      "internal_name": "sim_select_l0.3_w0.1_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.3_k128": {
+      "internal_name": "sim_select_l0.3_w0.3_k128",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.3_k256": {
+      "internal_name": "sim_select_l0.3_w0.3_k256",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_select_l0.3_w0.3_k512": {
+      "internal_name": "sim_select_l0.3_w0.3_k512",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.03_w0.1": {
+      "internal_name": "sim_teacher_l0.03_w0.1",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.03_w0.3": {
+      "internal_name": "sim_teacher_l0.03_w0.3",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.1_w0.1": {
+      "internal_name": "sim_teacher_l0.1_w0.1",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.1_w0.3": {
+      "internal_name": "sim_teacher_l0.1_w0.3",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.3_w0.1": {
+      "internal_name": "sim_teacher_l0.3_w0.1",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_teacher_l0.3_w0.3": {
+      "internal_name": "sim_teacher_l0.3_w0.3",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_z_l0.03": {
+      "internal_name": "sim_z_l0.03",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_z_l0.1": {
+      "internal_name": "sim_z_l0.1",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "sim_z_l0.3": {
+      "internal_name": "sim_z_l0.3",
+      "paper_name": "Relational Mapping Evidence",
+      "category": "Unified Evidence Construction / Vocabulary-free Relation Evidence"
+    },
+    "total": {
+      "internal_name": "total",
+      "paper_name": "Aligned Fusion Evidence",
+      "category": "Unified Evidence Construction / Base Alignment Evidence"
+    }
+  },
+  "sera_selection_summary": {
+    "selection_key": "base_alignment_fusion",
+    "paper_selection_key": "Base Alignment Beta Fusion",
+    "base_selection_key": null,
+    "paper_base_selection_key": null,
+    "candidate_selection_key": null,
+    "paper_candidate_selection_key": null,
+    "guard_decision": null,
+    "router_safety_policy": "official_validation_protected_fallback"
+  },
+  "metric_means": {
+    "final": 0.7822222113609314,
+    "clip_acc": 0.4533333480358124,
+    "mlp_acc": 0.7467901110649109,
+    "ada_acc": 0.6662963032722473,
+    "total_acc": 0.7630864381790161,
+    "sim_raw_l0.03_acc": 0.6341975331306458,
+    "sim_z_l0.03_acc": 0.591234564781189,
+    "sim_teacher_l0.03_w0.1_acc": 0.6113580465316772,
+    "sim_select_l0.03_w0.1_k128_acc": 0.5556790232658386,
+    "sim_select_l0.03_w0.1_k256_acc": 0.5869135856628418,
+    "sim_select_l0.03_w0.1_k512_acc": 0.5881481766700745,
+    "sim_teacher_l0.03_w0.3_acc": 0.6127160787582397,
+    "sim_select_l0.03_w0.3_k128_acc": 0.5570370554924011,
+    "sim_select_l0.03_w0.3_k256_acc": 0.5883950591087341,
+    "sim_select_l0.03_w0.3_k512_acc": 0.5907407402992249,
+    "sim_raw_l0.1_acc": 0.6302469372749329,
+    "sim_z_l0.1_acc": 0.5914815068244934,
+    "sim_teacher_l0.1_w0.1_acc": 0.6059259176254272,
+    "sim_select_l0.1_w0.1_k128_acc": 0.5550617575645447,
+    "sim_select_l0.1_w0.1_k256_acc": 0.5860493779182434,
+    "sim_select_l0.1_w0.1_k512_acc": 0.5827160477638245,
+    "sim_teacher_l0.1_w0.3_acc": 0.6114814877510071,
+    "sim_select_l0.1_w0.3_k128_acc": 0.5569135546684265,
+    "sim_select_l0.1_w0.3_k256_acc": 0.5870370268821716,
+    "sim_select_l0.1_w0.3_k512_acc": 0.5881481766700745,
+    "sim_raw_l0.3_acc": 0.6070370078086853,
+    "sim_z_l0.3_acc": 0.5913580060005188,
+    "sim_teacher_l0.3_w0.1_acc": 0.5982716083526611,
+    "sim_select_l0.3_w0.1_k128_acc": 0.5553086400032043,
+    "sim_select_l0.3_w0.1_k256_acc": 0.5844444632530212,
+    "sim_select_l0.3_w0.1_k512_acc": 0.5804938077926636,
+    "sim_teacher_l0.3_w0.3_acc": 0.6059259176254272,
+    "sim_select_l0.3_w0.3_k128_acc": 0.5570370554924011,
+    "sim_select_l0.3_w0.3_k256_acc": 0.5864197611808777,
+    "sim_select_l0.3_w0.3_k512_acc": 0.5829629898071289,
+    "final_acc": 0.7822222113609314
+  },
+  "fusion_info": {
+    "fusion": "base_alignment_fusion",
+    "base_alignment_fusion": 0.75,
+    "base_alignment_fusion_val_acc": 0.7792592644691467,
+    "selection_key": "base_alignment_fusion",
+    "selection_val_acc": 0.7792592644691467,
+    "branch_val_acc": {
+      "clip": 0.4588888883590698,
+      "mlp": 0.7451851963996887,
+      "ada": 0.6681481599807739,
+      "total": 0.7587037086486816,
+      "sim_raw_l0.03": 0.639629602432251,
+      "sim_z_l0.03": 0.5868518352508545,
+      "sim_teacher_l0.03_w0.1": 0.6064814925193787,
+      "sim_select_l0.03_w0.1_k128": 0.5648148059844971,
+      "sim_select_l0.03_w0.1_k256": 0.5859259366989136,
+      "sim_select_l0.03_w0.1_k512": 0.5870370268821716,
+      "sim_teacher_l0.03_w0.3": 0.6094444394111633,
+      "sim_select_l0.03_w0.3_k128": 0.5655555725097656,
+      "sim_select_l0.03_w0.3_k256": 0.5864814519882202,
+      "sim_select_l0.03_w0.3_k512": 0.587592601776123,
+      "sim_raw_l0.1": 0.6348147988319397,
+      "sim_z_l0.1": 0.5868518352508545,
+      "sim_teacher_l0.1_w0.1": 0.6001851558685303,
+      "sim_select_l0.1_w0.1_k128": 0.5640740990638733,
+      "sim_select_l0.1_w0.1_k256": 0.5842592716217041,
+      "sim_select_l0.1_w0.1_k512": 0.5833333134651184,
+      "sim_teacher_l0.1_w0.3": 0.6061111092567444,
+      "sim_select_l0.1_w0.3_k128": 0.5653703808784485,
+      "sim_select_l0.1_w0.3_k256": 0.5861111283302307,
+      "sim_select_l0.1_w0.3_k512": 0.5859259366989136,
+      "sim_raw_l0.3": 0.6129629611968994,
+      "sim_z_l0.3": 0.5866666436195374,
+      "sim_teacher_l0.3_w0.1": 0.5946296453475952,
+      "sim_select_l0.3_w0.1_k128": 0.5633333325386047,
+      "sim_select_l0.3_w0.1_k256": 0.5824074149131775,
+      "sim_select_l0.3_w0.1_k512": 0.5811111330986023,
+      "sim_teacher_l0.3_w0.3": 0.6000000238418579,
+      "sim_select_l0.3_w0.3_k128": 0.5649999976158142,
+      "sim_select_l0.3_w0.3_k256": 0.5848147869110107,
+      "sim_select_l0.3_w0.3_k512": 0.5833333134651184
+    },
+    "selection_mode": "official_val",
+    "official_val_used_for_selection": true,
+    "support_only_selection_used": false,
+    "fixed_selection_used": false,
+    "stack_info": {
+      "stack_enabled": false
+    },
+    "query_leakage": false,
+    "test_label_used": false,
+    "router_safety_policy": "official_validation_protected_fallback",
+    "sera_module_policy": "SERA_balanced_default",
+    "support_reliability_router_enabled": false,
+    "prototype_compactness_gate_enabled": false,
+    "shot_aware_router_enabled": false,
+    "text_prior_preservation_enabled": false
+  },
+  "args": {
+    "dataset": "eurosat",
+    "root_path": "./data",
+    "model_cache_dir": "./pretrained/clip",
+    "backbone": "vit_b32",
+    "shots": 1,
+    "seed": 2024,
+    "epochs": 50,
+    "batch_size": 32,
+    "num_workers": 4,
+    "lr": 0.001,
+    "loss_lambda": "1,1,1,1,1",
+    "fuse_type": 2,
+    "validation_mode": "official_val",
+    "selection_mode": "official_val",
+    "evidence_pool_profile": "balanced",
+    "disable_peft_warmup": false,
+    "enable_residual_reference_warmup": false,
+    "enable_residual_evidence": false,
+    "enable_validation_protected_routing": true,
+    "evidence_routing_guard_margin": 0.0,
+    "enable_support_reliability_router": false,
+    "support_router_margin": 0.0,
+    "enable_prototype_compactness_gate": false,
+    "enable_shot_aware_router": false,
+    "enable_text_prior_preservation": false,
+    "residual_evidence_iters_per_shot": 500,
+    "residual_evidence_batch_size": 32,
+    "lora_warmup_iters_per_shot": 250,
+    "lora_warmup_lr": 0.0002,
+    "lora_warmup_weight_decay": 0.01,
+    "lora_position": "top3",
+    "lora_encoder": "both",
+    "lora_params": "q,k,v",
+    "lora_rank": 2,
+    "lora_alpha": 1,
+    "lora_dropout": 0.25,
+    "peft_warmup_epochs": 3,
+    "peft_warmup_lr": 2e-05,
+    "peft_warmup_weight_decay": 0.0001,
+    "peft_train_visual_proj": false,
+    "disable_vocab_free": false,
+    "source_prompt_type": "imagenet_text_ensemble",
+    "sim_lambdas": "0.03,0.1,0.3",
+    "sim_topk": "128,256,512",
+    "sim_teacher_weights": "0.0,0.1,0.3",
+    "disable_extra_adapters": false,
+    "enable_feature_scale_evidence": false,
+    "feature_scale_lambdas": "0.01,0.0625,0.1,0.3",
+    "feature_scale_epochs": 120,
+    "feature_scale_lr": 0.05,
+    "feature_scale_kl_weight": 0.5,
+    "disable_svd_adapter": false,
+    "svd_ranks": "8,16,32",
+    "svd_lambdas": "0.01,0.03,0.1",
+    "svd_alphas": "0.25,0.5",
+    "disable_stack_adapter": false,
+    "disable_auxiliary_support_evidence": false,
+    "stack_lambdas": "0.1,0.3,1.0",
+    "stack_top_branches": 16,
+    "ridge_lambdas": "0.01,0.03,0.1",
+    "adaptive_cache_betas": "5.5,10.0",
+    "adaptive_cache_alphas": "1.0,2.0",
+    "adaptive_cache_epochs": 40,
+    "adaptive_cache_lr": 0.01,
+    "text_residual_epochs": 80,
+    "text_residual_lr": 0.01,
+    "fusion_grid_step": 0.05,
+    "enable_multi_view_evidence_aggregation": true,
+    "save_json": "results/reference/no_rea/SERA_no_REA_eurosat_vit_b32_1shot_seed2024.json",
+    "save_fixed_companion_json": "",
+    "save_compact_ablation_json": "",
+    "selected_feature_counts": "128,256"
+  }
+}

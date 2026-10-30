@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sera-vlm"
+version = "1.0.0"
+description = "Support Evidence Routing and Adaptation for few-shot VLM classification"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+  "ftfy==6.3.1",
+  "gdown==5.2.1",
+  "numpy==2.2.6",
+  "Pillow==12.1.1",
+  "regex==2026.3.32",
+  "scipy==1.15.3",
+  "torch==2.5.1",
+  "torchvision==0.20.1",
+  "tqdm==4.67.3",
+]
+
+[project.scripts]
+sera = "sera.runner:main"
+
+[tool.setuptools.packages.find]
+include = ["sera*", "datasets*", "third_party.reference_clip.clip*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"sera.clip_encoder" = ["bpe_simple_vocab_16e6.txt.gz"]
+"datasets" = ["jsons/*.json", "jsons/*.txt"]
+"third_party.reference_clip.clip" = ["bpe_simple_vocab_16e6.txt.gz"]
