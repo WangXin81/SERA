@@ -21,4 +21,13 @@ functions and data boundaries. Use the [experiment launchers](../scripts/README.
 for the formal settings, including the switches required to enable the complete
 method.
 
+## Component Entry Points
+
+| Component | Implementation in `runner.py` |
+| --- | --- |
+| UEC relation evidence | `build_sim_logits` |
+| Independent REA branch | `train_residual_evidence_branch` |
+| MEA evaluation | `FiveCropEvalTransform`, `collect_outputs` |
+| VPER route selection | `select_fusion_by_mode` |
+
 [Repository README](../README.md)
