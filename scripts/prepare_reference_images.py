@@ -7,6 +7,7 @@ import gzip
 import hashlib
 from pathlib import Path
 import shutil
+from verify_reference_data import imagenet_layout_issues
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -26,11 +27,12 @@ def main():
     source=args.source_root.resolve(); target=args.output_root.resolve()
     if source==target or source.is_relative_to(target) or target.is_relative_to(source):
         raise SystemExit('Source and output roots must be separate non-nested directories')
-    checked=0
+    checked=0; imagenet_paths=set()
     with gzip.open(ROOT/'datasets/manifests/reference_data_files.csv.gz','rt',encoding='utf-8',newline='') as f:
         for row in csv.DictReader(f):
             rel=Path(row['path'])
             if rel.parts[0]!=args.dataset or rel.suffix.lower() not in {'.jpg','.jpeg','.png','.bmp','.webp'}: continue
+            if args.dataset=='imagenet': imagenet_paths.add(rel.as_posix())
             src=(source/rel).resolve(); dst=(target/rel).resolve()
             if not src.is_relative_to(source) or not dst.is_relative_to(target): raise SystemExit('Unsafe manifest path')
             if not src.is_file() or src.stat().st_size!=int(row['bytes']) or digest(src)!=row['sha256']:
@@ -44,6 +46,9 @@ def main():
                     shutil.copy2(src,dst)
             checked+=1
     if not checked:raise SystemExit('No image files matched the requested dataset')
+    if not args.dry_run:
+        issues=imagenet_layout_issues(target,imagenet_paths)
+        if issues: raise SystemExit('Output ImageNet tree differs from the reference:\n'+'\n'.join(issues[:25]))
     print(f'Reference images '+('verified' if args.dry_run else 'prepared')+f': {checked} files')
 
 if __name__=='__main__':main()

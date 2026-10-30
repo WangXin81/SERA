@@ -49,10 +49,14 @@ def prepare(destination, download=True):
             finally:
                 if temporary.exists(): temporary.unlink()
             print(f'Checkpoint prepared: {name}')
+    expected_caches={name for name in entries if name.startswith('clip/text_feats/')}
+    restored_caches=set()
     with tarfile.open(ROOT/'resources/SERA_text_features.tar.gz','r:gz') as archive:
         for item in archive.getmembers():
             if not item.isfile() or item.name not in entries or not item.name.startswith('clip/text_feats/'):
                 raise SystemExit(f'Unexpected cache archive entry: {item.name}')
+            if item.name in restored_caches:
+                raise SystemExit(f'Duplicate cache archive entry: {item.name}')
             target=(destination/item.name).resolve()
             if not target.is_relative_to(destination): raise SystemExit('Unsafe archive path')
             payload=archive.extractfile(item).read()
@@ -64,6 +68,10 @@ def prepare(destination, download=True):
             else:
                 target.parent.mkdir(parents=True,exist_ok=True)
                 target.write_bytes(payload)
+            restored_caches.add(item.name)
+    missing_caches=expected_caches-restored_caches
+    if missing_caches:
+        raise SystemExit('Reference cache archive is incomplete: '+', '.join(sorted(missing_caches)))
     print('Reference text-feature caches verified and prepared: 39 files')
 
 def main():
