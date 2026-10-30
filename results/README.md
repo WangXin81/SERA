@@ -31,6 +31,14 @@ preserve provenance and do not add experimental cells to the canonical counts.
 External-method values in `paper_release_20260809/03_external_methods/` are
 publication-reported comparisons, not reruns performed by this release.
 
+## Numerical Conventions
+
+The core CSV field `acc` reports accuracy as a percentage. In the paired UEC
+JSON records and detail CSV, `full_final_acc` and `ablation_final_acc` are
+fractions in the range 0–1; `delta_vs_full_pp` is expressed in percentage points.
+The reconstruction script performs the corresponding conversions. Displayed
+paper values are rounded separately from the archived numerical precision.
+
 ## Verification
 
 ```bash
