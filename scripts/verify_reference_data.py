@@ -10,6 +10,12 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 MANIFEST=ROOT/'datasets/manifests/reference_data_files.csv.gz'
 IMAGE_SUFFIXES={'.jpg','.jpeg','.png','.bmp','.webp'}
+REQUIRED_LOADER_METADATA={
+    'fgvc_aircraft/variants.txt',
+    'fgvc_aircraft/images_variant_train.txt',
+    'fgvc_aircraft/images_variant_val.txt',
+    'fgvc_aircraft/images_variant_test.txt',
+}
 
 def imagenet_layout_issues(root, expected_paths):
     """Reject extra ImageNet images or classes that alter the sampling pool."""
@@ -41,7 +47,9 @@ def main():
     with gzip.open(MANIFEST,'rt',encoding='utf-8',newline='') as f:
         for row in csv.DictReader(f):
             if args.dataset and row['path'].split('/',1)[0]!=args.dataset: continue
-            if not args.include_metadata and Path(row['path']).suffix.lower() not in IMAGE_SUFFIXES: continue
+            if (not args.include_metadata
+                    and Path(row['path']).suffix.lower() not in IMAGE_SUFFIXES
+                    and row['path'] not in REQUIRED_LOADER_METADATA): continue
             if row['path'].startswith(('imagenet/images/train/','imagenet/images/val/')) and Path(row['path']).suffix.lower() in IMAGE_SUFFIXES:
                 imagenet_paths.add(row['path'])
             path=(root/row['path']).resolve()

@@ -7,7 +7,7 @@ Run these commands from the repository root in the documented environment.
 | `link_resources.sh` | Link a dataset root and copy a model resource tree into the checkout |
 | `prepare_model_resources.py` | Download verified CLIP checkpoints and restore the 39 reference text-feature caches |
 | `prepare_reference_images.py` | Materialize the server image subset from an existing dataset tree |
-| `verify_reference_data.py` | Verify image paths, sizes, and the server reference inventory |
+| `verify_reference_data.py` | Verify images and required loader annotations against the reference inventory |
 | `run_experiment.sh` | Train and evaluate one dataset-backbone-shot-protocol cell |
 | `reproduce_grid.sh` | Run all 165 cells for one formal protocol |
 | `reproduce_uec_internal_grid.sh` | Run the paired UEC evidence-group ablation grid |

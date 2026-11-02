@@ -30,6 +30,24 @@ names and class directories recorded in `split_zhou_UCF101.json`.
 The [CoOp dataset guide](https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md#ucf101)
 provides the extracted `UCF-101-midframes.zip` used by this classification layout.
 
+### Required Loader Annotations
+
+FGVC Aircraft reads the following files directly from `data/fgvc_aircraft/`,
+alongside the `images/` directory:
+
+```text
+variants.txt
+images_variant_train.txt
+images_variant_val.txt
+images_variant_test.txt
+```
+
+These files are part of the original FGVC Aircraft release. Keep their order
+and contents unchanged because they define class indices and split membership.
+Image-only preparation does not supply them. The nine other non-ImageNet
+loaders use the bundled split JSON files when dataset-local copies are absent;
+ImageNet derives its partitions from the reference image directories.
+
 ## Reference Bundle
 
 The full reproducibility bundle stores the verified image tree directly under
@@ -87,11 +105,13 @@ Verify the prepared image files against the reference checksums:
 python scripts/verify_reference_data.py --root /path/to/dataset-root
 ```
 
-The ImageNet check also rejects additional image files and class directories,
-because they change the support sampling pool or validation/query partition.
+The default check verifies image files and the four FGVC Aircraft annotation
+files required by its loader. The ImageNet check also rejects additional image
+files and class directories because they change the support sampling pool or
+validation/query partition.
 `--dataset imagenet` restricts the check to one dataset. `--sizes-only` performs
-a faster path-and-size check. The default check verifies image files; adding
-`--include-metadata` also checks the original annotation, preparation-record,
+a faster path-and-size check. Adding `--include-metadata` also checks the
+original annotation, preparation-record,
 and cached-metadata files present in the complete server snapshot.
 
 The stricter original full-bundle inventory check is:

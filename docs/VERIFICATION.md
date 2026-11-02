@@ -30,10 +30,12 @@ python scripts/verify_reference_data.py
 python scripts/check_environment.py
 ```
 
-These commands additionally check local checkpoint presence, image paths and
-reference integrity metadata, and the reference numerical environment. The separate
+These commands additionally check local checkpoint presence, image paths,
+the required FGVC Aircraft annotations, reference integrity metadata, and the
+reference numerical environment. The separate
 `python scripts/check_data.py` command checks the original full-bundle
 inventories and loader splits, including cached metadata. That strict bundle
-inventory differs from image-only verification of a prepared source checkout.
+inventory differs from the image and required-annotation checks of a prepared
+source checkout.
 
 [Repository README](../README.md) · [Reproducibility](REPRODUCIBILITY.md)

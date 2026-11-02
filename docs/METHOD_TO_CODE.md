@@ -9,7 +9,8 @@ by this profile and do not enter the reported SERA results.
 
 1. Load the pretrained CLIP/VLM backbone and construct target-class text
    prototypes.
-2. Train the lightweight base-alignment components on the K-shot support set.
+2. Warm up the visual LayerNorm parameters and logit scale on the K-shot
+   support set, then train the lightweight base-alignment components.
 3. Train REA independently from support images and support labels only.
 4. Evaluate the base path on support, routing-validation, and query sets. When
    MEA is enabled, each image is evaluated through FiveCrop and the per-view
@@ -35,8 +36,12 @@ training, residual adaptation, route selection, or fusion-weight selection.
 ## UEC: Unified Evidence Construction
 
 UEC operates in a common C-class logit space. Under
-`--evidence_pool_profile balanced`, it retains two evidence groups, each
-containing four evidence branches:
+`--evidence_pool_profile balanced`, it retains two evidence groups comprising
+eight evidence families. Base alignment contributes four logit branches;
+the four relation families are instantiated over the configured regularization,
+prior-strength, and source-dimension settings. Each instantiated branch is one
+C-dimensional class-logit vector, so the evidence pool is not limited to eight
+candidate vectors.
 
 ### Base alignment evidence
 
