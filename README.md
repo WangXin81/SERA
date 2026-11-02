@@ -32,18 +32,25 @@ before query inference. The figure is reproduced from the manuscript.
 
 ## Repository Contents
 
-| Purpose | Path |
+| Path | Contents |
 | --- | --- |
-| Training and evaluation entry point | [`train.py`](train.py) |
-| SERA implementation | [`sera/`](sera/README.md) |
-| Dataset loaders and frozen split metadata | [`datasets/`](datasets/README.md) |
-| Setup, experiment, and verification commands | [`scripts/`](scripts/README.md) |
-| Formal experiment configuration | [`configs/`](configs/README.md) |
-| Data, method, and reproduction guides | [`docs/`](docs/README.md) |
-| Frozen result records and paper tables | [`results/`](results/README.md) |
-| Supplementary execution guide | [`README_SUPPLEMENTARY.txt`](README_SUPPLEMENTARY.txt) |
-| Third-party source notices | [`THIRD_PARTY.md`](THIRD_PARTY.md) |
-| Reference model resources | [`resources/`](resources/README.md) |
+| [`assets/`](assets/README.md) | Manuscript framework overview in PNG and EMF formats |
+| [`configs/`](configs/README.md) | Formal experiment settings and protocol definitions |
+| [`datasets/`](datasets/README.md) | Dataset loaders, frozen split metadata, and reference file inventory |
+| [`docs/`](docs/README.md) | Method-to-code mapping, resource preparation, and reproduction guides |
+| [`outputs/`](outputs/) | Generated experiment outputs; only a placeholder is tracked |
+| [`resources/`](resources/README.md) | Included text-feature caches and CLIP checkpoint preparation instructions |
+| [`results/`](results/README.md) | Frozen full-method and ablation results, comparison values, and paper tables |
+| [`scripts/`](scripts/README.md) | Resource preparation, experiment execution, table reconstruction, and verification scripts |
+| [`sera/`](sera/README.md) | Core SERA implementation, CLIP-compatible encoder, and low-rank adaptation layers |
+| [`third_party/reference_clip/`](third_party/reference_clip/) | Bundled reference CLIP implementation and retained source notices |
+| [`train.py`](train.py) | Training and evaluation command-line entry point |
+| [`environment.yml`](environment.yml) | Conda environment definition |
+| [`requirements.txt`](requirements.txt) | Pinned Python dependencies, including the reference CUDA builds |
+| [`pyproject.toml`](pyproject.toml) | Python package configuration and installed `sera` command |
+| [`README_SUPPLEMENTARY.txt`](README_SUPPLEMENTARY.txt) | Supplementary setup and execution guide |
+| [`THIRD_PARTY.md`](THIRD_PARTY.md) | Summary of bundled third-party components and notices |
+| [`.gitignore`](.gitignore) | Exclusions for local data, checkpoints, generated outputs, and caches |
 
 The source distribution includes the implementation, environment specifications,
 split metadata, experiment scripts, and complete reference result archive.
